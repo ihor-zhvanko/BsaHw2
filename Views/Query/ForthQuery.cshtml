@@ -1,0 +1,61 @@
+@model IList<User>
+@{
+    ViewData["Title"] = "Forth Query";
+}
+
+<div class="table-responsive">
+  <table class="table forth-query">
+    <thead>
+      <tr>
+        <th class="text-center py-5" scope="col">#</th>
+        <th class="text-center" scope="col">Id</th>
+        <th class="text-center" scope="col">Avatar</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      @for(var i = 0; i < Model.Count; ++i) {
+        <tr class="py-5">
+          <td  class="text-center">@(i + 1)</td>
+          <td  class="text-center">@Model[i].Id</td>
+          <td  class="text-center py-4"><img class="rounded-50" width="100px" height="100px" src="@Model[i].AvatarUrl" alt="User"></td>
+          <td>
+          @Html.ActionLink(@Model[i].Name, "Details", "User", new {
+            id = @Model[i].Id
+          }, new { style = "font-size: inherit" })
+          </td>
+          <td>@Model[i].Email</td>
+        </tr>
+
+        @if(@Model[i].ToDos.Count > 0) {
+          var collapseId = "collapseUserToDos" + i.ToString();
+          <tr>
+            <td colspan="5" class="border-top-0">
+              <a class="btn btn-light btn-block font-weight-bold border rounded-0" data-toggle="collapse" href="#@collapseId" role="button" aria-expanded="false" aria-controls="@collapseId">
+                Show user ToDos!
+              </a>
+              
+              <div class="collapse border border-top-0 p-3" id="@collapseId">
+                @foreach(var todo in @Model[i].ToDos) {
+                  var doneClass = "bg-danger";
+                  var doneText = "Not Done";
+                  if(todo.IsComplete) {
+                    doneClass= "bg-success";
+                    doneText = "Done";
+                  }
+                  <div class="card todo d-inline-flex flex-row mr-3 mb-3">
+                    <span class="p-3 border-right text-light bg-secondary">@todo.Id</span>
+                    <span class="p-3 border-right bg-light">@todo.Name</span>
+                    <span class="p-3 text-light @doneClass"> @doneText </span>
+                  </div>
+                }
+            </div>
+          </td>
+        </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

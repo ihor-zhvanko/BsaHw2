@@ -1,0 +1,24 @@
+@model (User User, IList<string> Comments)
+@{
+    ViewData["Title"] = "Second Query";
+}
+
+<h2 class="my-5 text-center">Comments With Length Less Than 50 Under Posts Of User</h2>
+
+<div class="row">
+  
+  <div class="d-flex flex-column">
+     @await Html.PartialAsync("_UserCard",
+      (@Model.User, "Details", "User", "Details")
+    )
+  </div>
+  <div class="col-lg">
+    @if(Model.Comments == null || Model.Comments.Count == 0) {
+      <span>This user has no comments with length less than 50 under his posts </span>
+    } else {
+      @foreach(var comment in Model.Comments) {
+        <div class="card p-3 my-3">@comment</div>
+      }
+    }
+  </div>
+</div>

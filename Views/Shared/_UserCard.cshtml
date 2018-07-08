@@ -1,0 +1,35 @@
+@model (User User, string ActionTitle, string ActionController, string Action);
+@{
+  var actionTitle = Model.ActionTitle ?? "Details";
+  var actionController = Model.ActionController ?? "User";
+  var action = Model.Action ?? "Details";
+  var renderAction = true;
+
+  if(string.IsNullOrEmpty(Model.Action) || string.IsNullOrEmpty(Model.ActionController)) {
+    renderAction = false;
+  }
+
+  var postsCount = @Model.User.Posts?.Count ?? 0;
+}
+
+<div class="card user">
+  <div class="img-wrapper">
+    <div class="card-img-bg h-50"></div>
+    <img class="card-img" src="@Model.User.AvatarUrl" alt="User">
+    <div class="posts-count p-3 bg-info text-light font-weight-bold" title="Posts">@postsCount</div>
+  </div>
+  
+  <div class="card-body">
+    <h5 class="card-title text-center text-truncate" title="@Model.User.Name">@Model.User.Name</h5>
+    <h6 class="card-subtitle mb-2 text-muted text-center text-truncate" title="@Model.User.Email">@Model.User.Email</h6>
+    
+    @if(renderAction) {
+      @Html.ActionLink(actionTitle, action, actionController, new {
+        id = @Model.User.Id
+      }, new {
+        @class="btn btn-block btn-primary mx-auto mt-3"
+      })
+    }
+    
+  </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model IList<User>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2 class="my-5 text-center">All Users</h2>
+
+<div class="row justify-content-around">
+  @foreach(var user in Model) {
+    @await Html.PartialAsync("_UserCard",
+      (user, "Details", "User", "Details")
+    )
+  }
+</div>

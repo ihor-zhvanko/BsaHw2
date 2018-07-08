@@ -1,0 +1,15 @@
+@model IList<Post>
+
+<a class="btn btn-light btn-block font-weight-bold border rounded-0" data-toggle="collapse" href="#collapsePosts" role="button" aria-expanded="false" aria-controls="collapsePosts">
+    User Posts
+</a>
+
+<div class="collapse border border-top-0 p-3" id="collapsePosts">
+  @if(@Model == null || @Model.Count == 0) {
+    <div>User has not any posts</div>
+  } else {
+    @foreach(var post in @Model) {
+        @await Html.PartialAsync("_PostCard", (@post, "Details", "Post", "Details"))
+    }
+  }
+</div>

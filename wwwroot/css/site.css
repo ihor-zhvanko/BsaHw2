@@ -1,0 +1,87 @@
+﻿* {
+    font-size: 14px;
+}
+
+h2 {
+    font-size: 5rem;
+}
+
+.rounded-50 {
+    border-radius: 50%;
+}
+
+.card.user {
+    margin: 1rem;
+    border-radius: 10px;
+    width: 235px;
+    word-wrap: unset;
+    background: #f8f1ff;
+}
+
+.card.user .posts-count {
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
+.card.user .img-wrapper {
+    position: relative;
+    padding: 1rem 3rem;
+}
+
+.card.user .card-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
+    z-index: 9999;
+    position: relative;
+}
+
+.card.user .card-img-bg {
+    position: absolute;
+    display: inline-block;
+    top :0;
+    left: 0;
+    right: 0;
+    background: rgb(104, 51, 173);
+    z-index: 0;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.card.todo {
+    border-radius: 10px;
+}
+
+.card.todo :first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.card.todo :last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.table.forth-query {
+    font-size: 1.5rem;
+}
+
+.table.forth-query td, .table.forth-query th {
+    vertical-align: middle;
+    font-size: 1.5rem;
+}
+
+.post .total-comments {
+    border-radius: 10px;
+}
+
+.post .total-comments div:first-child {
+    font-size: 1.3rem;
+}
+
+.fa-heart {
+    font-size: 1.2rem;
+}
+
+.fa-heart::before {
+    padding-right: 10px;
+}

@@ -1,0 +1,41 @@
+@model (Post Post, string ActionTitle, string ActionController, string Action);
+@{
+  var actionTitle = Model.ActionTitle ?? "Details";
+  var actionController = Model.ActionController ?? "User";
+  var action = Model.Action ?? "Details";
+  var renderAction = true;
+
+  if(string.IsNullOrEmpty(Model.Action) || string.IsNullOrEmpty(Model.ActionController)) {
+    renderAction = false;
+  }
+
+  var commentsCount = @Model.Post.Comments?.Count  ?? 0;
+}
+
+<div class="card post d-inline-flex flex-row mr-3 my-3 col-md-12">
+  <div class="d-flex flex-column py-3 border-right">
+    <div class="total-comments border border-warning bg-light pt-3 pb-1 mr-3">
+      <div class="text-center">@commentsCount</div>
+      <div class="badge">Comments</div>
+    </div>
+
+  </div>
+  <div class="col py-3">
+    <h5 class="card-title">@Model.Post.Title</h5>
+    <h6 class="card-subtitle border-bottom py-2">Created on @Model.Post.CreatedAt.ToString("MMMM dd, yyyy H:mm:ss")</h6>
+    <p class="card-body">@Model.Post.Body</p>
+    <div class="row justify-content-between">
+      @if(renderAction) {
+        @Html.ActionLink(actionTitle, action, actionController, new {
+          id = @Model.Post.Id
+        }, new {
+          @class="btn btn-primary mx-3"
+        })
+      } else { 
+        <div></div>
+      }
+      
+      <span class="fas fa-heart text-primary">@Model.Post.Likes</span>
+    </div>
+  </div>
+</div>

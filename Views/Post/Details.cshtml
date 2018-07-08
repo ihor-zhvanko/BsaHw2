@@ -1,0 +1,25 @@
+@model Post
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+<h2 class="my-5 text-center">Post Details</h2>
+
+<div class="row">
+    @await Html.PartialAsync("_PostCard", (@Model, "", "", ""))
+
+    <a class="btn btn-light btn-block font-weight-bold border rounded-0" data-toggle="collapse" href="#collapseComments" role="button" aria-expanded="false" aria-controls="collapseComments">
+        Post Comments
+    </a>
+
+    <div class="collapse border border-top-0 p-3 w-100" id="collapseComments">
+      @if(Model.Comments == null || Model.Comments.Count == 0) {
+        <div>Post has not any comments</div>
+      } else {
+        @foreach(var comment in @Model.Comments) {
+            @await Html.PartialAsync("_CommentCard", @comment)
+        }
+      }
+    </div>
+    
+</div>

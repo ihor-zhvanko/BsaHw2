@@ -1,0 +1,44 @@
+@model UserStats
+@{
+    ViewData["Title"] = "Fifth Query";
+}
+
+<div class="row">
+  <div class="d-flex flex-column mx-auto">
+    @await Html.PartialAsync("_UserCard",
+      ((User)@Model, "Details", "User", "Details")
+    )
+  </div>
+  <div class="col">
+    <div class="row">
+      <h4 class="my-3 d-block">Last Post</h4>
+      @if(Model.LastPost == null) {
+        <div class="col-12">User has not any post</div>
+      } else {
+        @await Html.PartialAsync("_PostCard", (@Model.LastPost, "Details", "Post", "Details"))
+      }
+    </div>
+
+    <div class="row">
+      <h4 class="my-3">Incompleted ToDos: @(Model.IncompletedTasksCount ?? 0)</h4>
+    </div>
+
+    <div class="row">
+      <h4 class="my-3">The Most Commented Post (Comments Length > 80)</h4>
+      @if(Model.TheMostCommentsPost == null) {
+        <div class="col-12">User has not any post</div>
+      } else {
+        @await Html.PartialAsync("_PostCard", (@Model.TheMostCommentsPost, "Details", "Post", "Details"))
+      }
+    </div>
+
+    <div class="row">
+      <h4 class="my-3">The Most Liked Post</h4>
+      @if(Model.PopularPost == null) {
+        <div class="col-12">User has not any post</div>
+      } else {
+        @await Html.PartialAsync("_PostCard", (@Model.PopularPost, "Details", "Post", "Details"))
+      }
+    </div>
+  </div>
+</div>

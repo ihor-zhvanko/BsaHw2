@@ -1,0 +1,13 @@
+@model (IList<Post> Posts, string action)
+@{
+    ViewData["Title"] = "Select Post";
+}
+
+<h2 class="my-5 text-center">Please Select Post</h2>
+
+<div class="row justify-content-around">
+  
+  @foreach(var post in Model.Posts) {
+    @await Html.PartialAsync("_PostCard", (post, "Select", "Query", Model.action))
+  }
+</div>

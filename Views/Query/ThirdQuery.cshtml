@@ -1,0 +1,31 @@
+@model (User User, IList<(int, string)> ToDos)
+@{
+    ViewData["Title"] = "Third Query";
+}
+
+<h2 class="my-5 text-center">Completed User ToDos</h2>
+
+<div class="row">
+  
+  <div class="d-flex flex-column">
+    @await Html.PartialAsync("_UserCard",
+      (@Model.User, "Details", "User", "Details")
+    )
+  </div>
+  <div class="col-lg">
+    @if(Model.ToDos == null || Model.ToDos.Count == 0) {
+      <span>This user has no completed ToDos</span>
+    } else {
+      @foreach(var todo in Model.ToDos) {
+        <div class="card todo d-inline-flex flex-row mr-3 my-3">
+          <span class="p-3 border-right text-light bg-secondary">@todo.Item1</span>
+          <span class="p-3 border-right bg-light">@todo.Item2</span>
+          <span class="p-3 text-light bg-success"> Done </span>
+        </div>
+      }
+    }
+
+    
+  </div>
+</div>
+

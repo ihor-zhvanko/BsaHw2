@@ -1,0 +1,12 @@
+@model Comment;
+@{
+
+}
+
+<div class="card comment d-flex flex-column mr-3 my-3 col-md-12 p-3">
+  <h6 class="card-subtitle border-bottom py-2">Created on @Model.CreatedAt.ToString("MMMM dd, yyyy H:mm:ss")</h6>
+  <p class="card-body">@Model.Body</p>
+  <div class="d-flex justify-content-end">
+    <span class="fas fa-heart text-primary">@Model.Likes</span>
+  </div>
+</div>

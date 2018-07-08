@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BsaHw2</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a asp-area="" asp-controller="User" asp-action="Index" class="navbar-brand">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a asp-area="" asp-controller="User" asp-action="Index" class="nav-link" >Users</a>
+        </li>
+        <li class="nav-item">
+          <a asp-area="" asp-controller="Post" asp-action="Index" class="nav-link" >Posts</a>
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("First Query", "FirstQuery", "Query", new {id=""}, new {
+            @class="nav-link"
+          })
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Second Query", "SecondQuery", "Query", new {id=""}, new {
+            @class="nav-link"
+          })
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Third Query", "ThirdQuery", "Query", new {id=""}, new {
+            @class="nav-link"
+          })
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Forth Query", "ForthQuery", "Query", new {id=""}, new {
+            @class="nav-link"
+          })
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Fifth Query", "FifthQuery", "Query", new {id=""}, new {
+            @class="nav-link"
+          })
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Sixth Query", "SixthQuery", "Query", new {id=""}, new {
+            @class="nav-link"
+          })
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+      @RenderBody()
+      <hr />
+      <footer>
+          <p>&copy; 2018 - zhvakoi</p>
+      </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+  @RenderSection("Scripts", required: false)
+</body>
+
+</html>

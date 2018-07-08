@@ -1,0 +1,25 @@
+@model IList<ToDo>
+
+<a class="btn btn-light btn-block font-weight-bold border rounded-0" data-toggle="collapse" href="#collapseToDos" role="button" aria-expanded="false" aria-controls="collapseToDos">
+    User ToDos
+</a>
+
+<div class="collapse border border-top-0 p-3" id="collapseToDos">
+  @if(@Model == null || @Model.Count == 0) {
+    <div>User has not any ToDos</div>
+  } else {
+    @foreach(var todo in @Model) {
+        var doneClass = "bg-danger";
+        var doneText = "Not Done";
+        if(todo.IsComplete) {
+            doneClass= "bg-success";
+            doneText = "Done";
+        }
+        <div class="card todo d-inline-flex flex-row mr-3 mb-3">
+            <span class="p-3 border-right text-light bg-secondary">@todo.Id</span>
+            <span class="p-3 border-right bg-light">@todo.Name</span>
+            <span class="p-3 text-light @doneClass"> @doneText </span>
+        </div>
+    }
+  }
+</div>

@@ -1,0 +1,32 @@
+@model PostStats
+@{
+    ViewData["Title"] = "Sixth Query";
+}
+
+<div class="row">
+  <div class="col-12">
+    @await Html.PartialAsync("_PostCard", ((Post)@Model, "Details", "Post", "Details"))
+  </div>
+  <div class="col-12">
+      <h4 class="my-3">The Longest Comment</h4>
+
+      @if(Model.TheLongestComment == null) {
+        <div>This post has no comments </div>
+      } else {
+        @await Html.PartialAsync("_CommentCard", @Model.TheLongestComment)
+      }
+
+      <h4 class="my-3">The Most Liked Post</h4>
+
+      @if(Model.PopularComment == null) {
+        <div>This post has no comments</div>
+      } else {
+        @await Html.PartialAsync("_CommentCard", @Model.PopularComment)
+      }
+
+      <h4 class="my-3">Quantity of Comments With Zero Likes Or Length Less Than 80: 
+        <span class="p-3 bg-danger text-light">@Model.ShortOrNotPopularComments</span>
+
+        </h4>
+  </div>
+</div>
